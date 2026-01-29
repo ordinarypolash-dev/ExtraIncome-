@@ -637,7 +637,7 @@
             <div class="withdraw-section" id="withdraw-section">
                 <div class="form-group">
                     <label for="withdraw-amount">পরিমাণ (টাকা)</label>
-                    <input type="number" id="withdraw-amount" class="form-control" placeholder="টাকার পরিমাণ লিখুন" min="20">
+                    <input type="number" id="withdraw-amount" class="form-control" placeholder="টাকার পরিমাণ লিখুন" min="500">
                 </div>
                 <div class="form-group">
                     <label for="payment-method">পেমেন্ট মাধ্যম</label>
@@ -683,7 +683,7 @@
                 
                 <div class="stat-card">
                     <h3><i class="fas fa-exclamation-triangle"></i> গুরুত্বপূর্ণ নোটিশ</h3>
-                    <p>উত্তোলনের জন্য ন্যূনতম ২০ টাকা প্রয়োজন। দয়া করে উত্তোলন করার আগে নিশ্চিত হয়ে নিন।</p>
+                    <p>উত্তোলনের জন্য ন্যূনতম ৫০০ টাকা প্রয়োজন। দয়া করে উত্তোলন করার আগে নিশ্চিত হয়ে নিন।</p>
                     <small>১ সপ্তাহ আগে</small>
                 </div>
             </div>
@@ -721,9 +721,9 @@
 
     <script>
         // Constants
-        const POINTS_PER_AD = 2.00; // প্রতি বিজ্ঞাপনে ২ টাকা
-        const MIN_WITHDRAW_TAKA = 20; // ন্যূনতম উত্তোলন ২০ টাকা
-        const REFERRAL_BONUS = 5.00; // রেফারেল বোনাস ৫ টাকা
+        const POINTS_PER_AD = 5.00; // প্রতি বিজ্ঞাপনে ৫ টাকা
+        const MIN_WITHDRAW_TAKA = 500; // ন্যূনতম উত্তোলন 500 টাকা
+        const REFERRAL_BONUS = 20.00; // রেফারেল বোনাস 20 টাকা
         
         // Telegram Bot Configuration - এখানে আপনার বটের তথ্য দিন
         const BOT_TOKEN = "8418407442:AAF99Ld7Ds1bJx5qNQAEuvXm2yPHOG_jFgc"; // আপনার বট টোকেন
@@ -808,7 +808,7 @@
                 // Check if this is first visit and not already referred
                 if (!localStorage.getItem('referredBy')) {
                     localStorage.setItem('referredBy', referrerId);
-                    showNotification('আপনি একটি রেফারেল লিঙ্ক ব্যবহার করে যোগদান করেছেন! রেফারার ৫ টাকা বোনাস পাবেন।', 'success');
+                    showNotification('আপনি একটি রেফারেল লিঙ্ক ব্যবহার করে যোগদান করেছেন! রেফারার ২০ টাকা বোনাস পাবেন।', 'success');
                     
                     // In a real app, you would send this to your backend
                     setTimeout(() => {
@@ -928,7 +928,7 @@
                     createCoinAnimation();
                     
                     // Show success notification
-                    showNotification(`২ টাকা যোগ হয়েছে! আপনার ব্যালেন্স: ${(earnedPoints + referralEarnings).toFixed(2)} টাকা`, 'success');
+                    showNotification(`৫ টাকা যোগ হয়েছে! আপনার ব্যালেন্স: ${(earnedPoints + referralEarnings).toFixed(5)} টাকা`, 'success');
                     
                     // Check if earned enough for withdrawal
                     if (earnedPoints + referralEarnings >= MIN_WITHDRAW_TAKA) {
@@ -1022,15 +1022,15 @@
             
             if (totalEarnings < MIN_WITHDRAW_TAKA) {
                 document.getElementById('withdraw-status').textContent = 
-                    `ন্যূনতম উত্তোলন পরিমাণ ${MIN_WITHDRAW_TAKA} টাকা। আপনার আছে ${totalEarnings.toFixed(2)} টাকা।`;
+                    `ন্যূনতম উত্তোলন পরিমাণ ${MIN_WITHDRAW_TAKA} টাকা। আপনার আছে ${totalEarnings.toFixed(500)} টাকা।`;
                 document.getElementById('withdraw-status').className = 'error-message';
                 document.getElementById('withdraw-section').style.display = 'block';
                 return;
             }
             
             document.getElementById('withdraw-amount').value = '';
-            document.getElementById('withdraw-amount').placeholder = `সর্বোচ্চ: ${totalEarnings.toFixed(2)} টাকা`;
-            document.getElementById('withdraw-amount').max = totalEarnings.toFixed(2);
+            document.getElementById('withdraw-amount').placeholder = `সর্বোচ্চ: ${totalEarnings.toFixed(500)} টাকা`;
+            document.getElementById('withdraw-amount').max = totalEarnings.toFixed(500);
             document.getElementById('withdraw-phone').value = '';
             document.getElementById('payment-method').selectedIndex = 0;
             document.getElementById('withdraw-status').textContent = '';
@@ -1059,7 +1059,7 @@
             }
             
             if (amount > totalEarnings) {
-                withdrawStatus.textContent = `পর্যাপ্ত ব্যালেন্স নেই। আপনার আছে ${totalEarnings.toFixed(2)} টাকা।`;
+                withdrawStatus.textContent = `পর্যাপ্ত ব্যালেন্স নেই। আপনার আছে ${totalEarnings.toFixed(500)} টাকা।`;
                 withdrawStatus.className = 'error-message';
                 return;
             }
@@ -1156,6 +1156,7 @@
     </script>
 </body>
 </html>
+
 
 
 

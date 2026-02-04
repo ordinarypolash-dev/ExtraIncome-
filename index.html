@@ -479,7 +479,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>টাকা আয় করুন - বিজ্ঞাপন দেখুন</h1>
+            <h1>টাকা আয় করুন - বন্ধুদেরকে আমন্ত্রণ জানান</h1>
             <p>বিজ্ঞাপন দেখে আসল টাকা আয় করুন</p>
             <div class="badge">সক্রিয়</div>
         </div>
@@ -1022,7 +1022,7 @@
             
             if (totalEarnings < MIN_WITHDRAW_TAKA) {
                 document.getElementById('withdraw-status').textContent = 
-                    `ন্যূনতম উত্তোলন পরিমাণ ${MIN_WITHDRAW_TAKA} টাকা। আপনার আছে ${totalEarnings.toFixed(500)} টাকা।`;
+                    `ন্যূনতম উত্তোলন পরিমাণ ${MIN_WITHDRAW_TAKA} টাকা। আপনার আছে ${totalEarnings.toFixed(2)} টাকা।`;
                 document.getElementById('withdraw-status').className = 'error-message';
                 document.getElementById('withdraw-section').style.display = 'block';
                 return;
@@ -1059,7 +1059,7 @@
             }
             
             if (amount > totalEarnings) {
-                withdrawStatus.textContent = `পর্যাপ্ত ব্যালেন্স নেই। আপনার আছে ${totalEarnings.toFixed(500)} টাকা।`;
+                withdrawStatus.textContent = `পর্যাপ্ত ব্যালেন্স নেই। আপনার আছে ${totalEarnings.toFixed(2)} টাকা।`;
                 withdrawStatus.className = 'error-message';
                 return;
             }
@@ -1156,6 +1156,7 @@
     </script>
 </body>
 </html>
+
 
 
 
